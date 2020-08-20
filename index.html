@@ -1,148 +1,176 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Plus Project</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="section">
-        <div class="vids">
+      <div class="vids">
+        <div id="video"> 
             <video autoplay loop muted id="vids">
-                <source src="src/media/partly-cloudy.mp4" type="video/mp4" />
-            </video>
-        </div>
-        <div class="container">
-            <span class="main-content">
-                <div class="navbar-css">
-                    <nav class="navbar navbar-light bg-light">
-                        <h1 id="navbarCity">London, UK</h1>
-                        <form class="form-inline" id="search-form">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search City"
-                                aria-label="Search City" id="city-search" />
-                            <button id="button" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                                Search
-                            </button>
-                            <button id="current-location" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                                Current Location
-                            </button>
-                        </form>
+         <source src="src/media/01d.mp4" type="video/mp4" />
+        </video>
+    </div>
+      </div>
+      <div class="container">
+        <span class="main-content">
+          <div class="navbar-css">
+            <nav class="navbar navbar-light bg-light">
+              <h1 id="navbarCity">London, UK</h1>
+              <form class="form-inline" id="search-form">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search City"
+                  aria-label="Search City"
+                  id="city-search"
+                />
+                <button
+                  id="button"
+                  class="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  Search
+                </button>
+                <button
+                  id="current-location"
+                  class="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  Current Location
+                </button>
+              </form>
+            </nav>
+          </div>
+          <br />
+          <p class="today" id="todays-date">Today Time | Day Date Month 2020</p>
 
-                    </nav>
+          <div class="mainTemp">
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-3">
+                <span class="maintemp" id="main-temperature">23</span>
+                <span class="maindegrees">
+                  <a href="#" id="celsius">ºC</a> |
+                  <a href="#" id="fahrenheit">ºF </a></span
+                >
+              </div>
+              <div class="col-2" id="icon">
+                <img src="src/media/experi1.png" />
+              </div>
+              <div class="col-4" id="two-temps">
+                <p>
+                  High: <span id="high-temp">31</span>ºC<br />Low:
+                  <span id="low-temp">12</span>ºC
+                </p>
+              </div>
+              <div class="col-1"></div>
+            </div>
+          </div>
+
+          <div class="weatherDes">
+            <p>
+              <span id="desWea">It is Sunny</span>
+            </p>
+          </div>
+
+          <div class="descriptives">
+            <p class="descriptive">Humidity = <span id="humidity">-</span>%</p>
+            <p class="descriptive">Wind Speed = <span id="wind">-</span> m/s</p>
+          </div>
+
+          <hr class="line" />
+        <div class="small-temps" id="forecast">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="day" id="day-one">Day 1</p>
+        
+                            <p class="small-t-emoji"><img src="src/media/experi1.png"></p>
+        
+                            <p>
+                                <span class="daytemp" id="highFiveDayTemp"> 21º</span><span class="nighttemp"
+                                    id="lowFiveDayTemp"> | 13º</span>
+                            </p>
+        
+                        </div>
+                    </div>
                 </div>
-                <br />
-                <p class="today" id="todays-date"> Today Time | Day Date Month 2020 </p>
-
-                <div class="mainTemp">
-                    <div class="row">
-                        <div class="col-3">
-
-                        </div>
-                        <div class="col-3">
-                            <span class="maintemp" id="main-temperature">23</span> <span class="maindegrees">
-                                <a href="#" id="celsius">ºC</a> |
-                                <a href="#" id="fahrenheit">ºF </a></span>
-                        </div>
-                        <div class="col-4" id="two-temps">
-                            <p><span id="low-temp">High: 31ºC</span>
-                                <br /><span id="high-temp">Low: 12ºC</span></p>
-                        </div>
-                        <div class="col-2">
-
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="day" id="day-two">Day 2</p>
+        
+                            <p class="small-t-emoji"><img src="src/media/experi1.png"></p>
+                            <p>
+                                <span class="daytemp" id="highFiveDayTemp"> 24º</span><span class="nighttemp"
+                                    id="lowFiveDayTemp"> | 14º</span>
+                            </p>
+        
                         </div>
                     </div>
                 </div>
-
-                <div class="weatherDes">
-                    <p>
-                        ☀️
-                        <span id="desWea">It is Sunny</span>
-                        ☀️
-                </div>
-                <div class="descriptives">
-                    <p class="descriptive" id="precip">Precipitation = 3%</p>
-                    <p class="descriptive">Wind Speed = <span id="wind">8</span> m/s</p>
-                </div>
-
-
-                <hr class="line" />
-                <div class="small-temps">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="day" id="day-one">Day 1</p>
-
-                                    <p class="small-t-emoji">🌤</p>
-
-                                    <p>
-                                        <span class="daytemp"> 21º</span><span class="nighttemp"> | 13º</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="day" id="day-two">Day 2</p>
-
-                                    <p class="small-t-emoji">🌤</p>
-                                    <p>
-                                        <span class="daytemp"> 24º</span><span class="nighttemp"> | 14º</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="day" id="day-three">Day 3</p>
-
-                                    <p class="small-t-emoji">🌤</p>
-                                    <p>
-                                        <span class="daytemp"> 23º</span><span class="nighttemp"> | 15º</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="day" id="day-four">Day 4</p>
-
-                                    <p class="small-t-emoji">🌤</p>
-                                    <p>
-                                        <span class="daytemp"> 24º</span><span class="nighttemp"> | 16º</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="day" id="day-five">Day 5</p>
-
-                                    <p class="small-t-emoji">🌧</p>
-                                    <p>
-                                        <span class="daytemp"> 23º</span>
-                                        <span class="nighttemp"> | 15º</span>
-                                    </p>
-                                </div>
-                            </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="day" id="day-three">Day 3</p>
+                            <p class="small-t-emoji"><img src="src/media/experi1.png"></p>
+                            <p>
+                                <span class="daytemp" id="highFiveDayTemp"> 23º</span><span class="nighttemp"
+                                    id="lowFiveDayTemp"> | 15º</span>
+                            </p>
+        
                         </div>
                     </div>
-
-            </span>
-            <br />
-            <footer><a href="https://github.com/IndyRoseGee/Weather-project">Open-source Code</a> by India Gee</footer>
-        </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="day" id="day-four">Day 4</p>
+                            <p class="small-t-emoji"><img src="src/media/experi1.png"></p>
+                            <p>
+                                <span class="daytemp" id="highFiveDayTemp"> 24º</span><span class="nighttemp"
+                                    id="lowFiveDayTemp"> | 16º</span>
+                            </p>
+        
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="day" id="day-five">Day 5</p>
+                            <p class="small-t-emoji"><img src="src/media/experi1.png"></p>
+                            <p>
+                                <span class="daytemp" id="highFiveDayTemp"> 23º</span>
+                                <span class="nighttemp" id="lowFiveDayTemp"> | 15º</span>
+                            </p>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <br />
+        <footer>
+          <a href="https://github.com/IndyRoseGee/Weather-project"
+            >Open-source Code</a
+          >
+          by India Gee
+        </footer>
+      </div>
     </div>
     <script src="src/index.js"></script>
-</body>
-
+  </body>
 </html>

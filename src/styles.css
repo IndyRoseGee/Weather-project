@@ -16,6 +16,7 @@
   margin-bottom: 30px;
   width: 780px;
   border-radius: 10px;
+  
 }
 .vids {
   position: fixed;
@@ -118,6 +119,12 @@ p {
   font-size: 25px;
   text-align: center;
 }
+#icon {
+  padding-top: 10px;
+  padding-left: 10px;
+  line-height: 60px;
+}
+
 #two-temps {
   margin-top: 20px;
   color: dimgrey;
@@ -169,4 +176,14 @@ footer {
   text-align: center;
   font-family: "Courier New", Courier, monospace;
   font-size: 16px;
+}
+
+.forecast {
+  text-align: center;
+}
+.icon {
+  width: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: center;
 }
