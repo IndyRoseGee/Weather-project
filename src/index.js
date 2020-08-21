@@ -194,6 +194,8 @@ function showWeather(response) {
   let tempMin = document.querySelector("#low-temp");
   tempMin.innerHTML = Math.round(response.data.main.temp_min);
 
+  celsiusTemperature = response.data.main.temp;
+
   let description = document.querySelector("#desWea");
   description.innerHTML = response.data.weather[0].description;
 
@@ -351,81 +353,142 @@ form.addEventListener("submit", search);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*function displayForecastDayOne(response) {
-  let dayOneBox = document.querySelector("#day-one-box");
-  let celsiusMax = Math.round(response.data[0].main.temp_max);
-  let celsiusMin = Math.round(response.data[0].main.temp_min);
-  let emoji = Math.round(response.data.weather[0].icon);
+//(0°C × 9/5) + 32 = 32°F
+let celsiusTemperature = null;
+let celsiusMax = null;
+let celsiusMin = null;
 
-  dayOneBox.innerHTML = `<p class="small-t-emoji"><img src="src/media/${emoji}.png"></p>
-  <p>
-    <span class="daytemp" id="highFiveDayTemp"> ${celsiusMax}º</span>
-    <span class="nighttemp" id="lowFiveDayTemp"> | ${celsiusMin}º</span>  </p>`;
+function displayFahTemp(event) {
+  event.preventDefault();
+
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let currentCelsius = document.querySelector("#main-temperature");
+  currentCelsius.innerHTML = fahrenheitTemperature;
+
+  let fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32);
+  let tempMax = document.querySelector("#high-temp");
+  tempMax.innerHTML = fahrenheitMax;
+
+  let fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
+  let fahrMin = document.querySelector("#low-temp");
+  fahrMin.innerHTML = fahrenheitMin;
+
+  let celsiusSymbol = document.querySelector("#celsius-symbol");
+  celsiusSymbol.innerHTML = " °F";
+
+  let celsiusSymbolLow = document.querySelector("#celsius-symbol-low");
+  celsiusSymbolLow.innerHTML = " °F";
+
+  let forecastFiveDaysHigh = document.querySelectorAll("#highFiveDayTemp");
+  forecastFiveDays.forEach(function (item) {
+    let currentTemp = days.innerHTML;
+    days.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastFiveDaysLow = document.querySelectorAll("#lowFiveDayTemp");
+  forecastFiveDaysLow.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  forecastMax = celsiusConverter.classList.remove("active");
+  fahrenheitConverter.classList.add("active");
 }
 
-*/
-
-// let icon = document.querySelector(".small-t-emoji");
-// icon.innerHTML = `<img src="src/media/${response.data.weather[0].icon}.png" width="130"/>`;
-//}
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahTemp);
 
 /*
 
-function forecastDayOne(response) {
-  let tempMax = Math.round(response.data.daily.temp.min);
-  let tempMin = Math.round(response.data.daily.temp.min);
-  let emoji = `<img src="src/media/${response.daily.weather[0].icon}.png" />`;
 
-  document.querySelector(
-    "#day-one-box"
-  ).innerHTML = `<p class="small-t-emoji"><img src="src/media/${emoji}.png"></p>
-  <p>
-    <span class="daytemp" id="highFiveDayTemp"> ${tempMax}º</span>
-    <span class="nighttemp" id="lowFiveDayTemp"> | ${tempMin}º</span>  </p>`;
+
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let currentCelsius = document.querySelector("#temperature");
+  currentCelsius.innerHTML = fahrenheitTemperature;
+  let fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32);
+  let tempMax = document.querySelector("#max-temp");
+  tempMax.innerHTML = fahrenheitMax;
+  let maxSymbol = document.querySelector("#celsius-max");
+  maxSymbol.innerHTML = "°F";
+  let fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
+  let fahrMin = document.querySelector("#min-temp");
+  fahrMin.innerHTML = fahrenheitMin;
+  let minSymbol = document.querySelector("#celsius-min");
+  minSymbol.innerHTML = "°F";
+
+  let forecastItems = document.querySelectorAll(".forecast-temp-max");
+  forecastItems.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    // grabbing the current value to convert--
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastItemsMin = document.querySelectorAll(".forecast-temp-min");
+  forecastItemsMin.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    // grabbing the current value to convert---
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+
+  let forecastCelsiusSymbol = document.querySelectorAll(".forecast-degree");
+  forecastCelsiusSymbol.forEach(function (item) {
+    item.innerHTML = `°F`;
+  });
+
+  forecastMax = celsiusConverter.classList.remove("active");
+  fahrenheitConverter.classList.add("active");
 }
 
-function showForecastDayOne(city) {
-  console.log(response);
-  let apiKey = "1f8b7e0173439d434022d96a0701f579";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=current,minutely,hourly&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(forecastDayOne);
-}*/
+function showCelsius(event) {
+  event.preventDefault();
+  let currentCelsius = document.querySelector("#temperature");
+  currentCelsius.innerHTML = Math.round(celsiusTemperature);
+  let tempMax = document.querySelector("#max-temp");
+  tempMax.innerHTML = Math.round(celsiusMax);
+  let maxSymbol = document.querySelector("#celsius-max");
+  maxSymbol.innerHTML = "°C";
+  let tempMin = document.querySelector("#min-temp");
+  tempMin.innerHTML = Math.round(celsiusMin);
+  let minSymbol = document.querySelector("#celsius-min");
+  minSymbol.innerHTML = "°C";
 
-/*
-function displayForecast(response) {
-  let forecast = null;
-  let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = null;
-  for (let index = 1; index < 6; index++) {
-    forecast = response.data.daily[index];
+  let forecastItems = document.querySelectorAll(".forecast-temp-max");
+  forecastItems.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    // grabbing the current value to convert---
+    // convert to Celsius
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
 
-    forecastElement.innerHTML += `
-     <div class="col forecastColumns" >
-      <div class="day-1">
-        ${formatForecastTime(forecast.dt * 1000)}
-          <img  src="src/img/${
-      forecast.weather[0].icon
-      }.png" alt="" class="icon">
-            <div id = "forecast-max">
-            <span class="forecast-temp-max">${Math.round(
-        forecast.temp.max
-      )}</span>
-            <span class="forecast-degree" id = "forecast-celsius" >°C</span>
-            </div>
-            <div id = "forecast-min">
-            <span class="forecast-temp-min">${Math.round(
-        forecast.temp.min
-      )}</span>
-            <span class="forecast-degree" >°C</span>
-            </div>
-            
-      </div>
-    </div >
-  `;
-  }
+  let forecastItemsMin = document.querySelectorAll(".forecast-temp-min");
+  forecastItemsMin.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    // grabbing the current value to convert--
+    // convert to Fahrenheit
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  let forecastFahrenheitSymbol = document.querySelectorAll(".forecast-degree");
+  forecastFahrenheitSymbol.forEach(function (item) {
+    item.innerHTML = `°C`;
+  });
+
+  fahrenheitConverter.classList.remove("active");
+  celsiusConverter.classList.add("active");
 }
 
-function search(city) {
-  let apiKey = "4190a6ee70227a6b15b76f600409fe74";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature); */
+let fahrenheitConverter = document.querySelector("#fahrenheit");
+fahrenheitConverter.addEventListener("click", showFahrenheit);
+
+let celsiusConverter = document.querySelector("#celsius");
+celsiusConverter.addEventListener("click", showCelsius);
+
+let button = document.querySelector("#location");
+button.addEventListener("click", showLocation);
+
+let citySearch = document.querySelector("#search-form");
+citySearch.addEventListener("submit", handleSubmit); */
