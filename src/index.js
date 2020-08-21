@@ -236,7 +236,7 @@ function displayForecast(response) {
     )}</span>º|
     <span class="nighttemp" id="lowFiveDayTemp"> ${Math.round(
       forecast.temp.min
-    )}</span>º
+    )}</span><span class="nightdegree">º</span>
     </p>`;
   }
 
@@ -255,7 +255,7 @@ function displayForecast(response) {
     )}</span>º|
     <span class="nighttemp" id="lowFiveDayTemp"> ${Math.round(
       forecast.temp.min
-    )}</span>º
+    )}</span><span class="nightdegree">º</span>
     </p>`;
   }
 
@@ -274,7 +274,7 @@ function displayForecast(response) {
     )}</span>º|
     <span class="nighttemp" id="lowFiveDayTemp"> ${Math.round(
       forecast.temp.min
-    )}</span>º
+    )}</span><span class="nightdegree">º</span>
     </p>`;
   }
   let forecastElementFour = document.querySelector("#day-four-box");
@@ -292,7 +292,7 @@ function displayForecast(response) {
     )}</span>º|
     <span class="nighttemp" id="lowFiveDayTemp"> ${Math.round(
       forecast.temp.min
-    )}</span>º
+    )}</span><span class="nightdegree">º</span>
     </p>`;
   }
   let forecastElementFive = document.querySelector("#day-five-box");
@@ -310,7 +310,7 @@ function displayForecast(response) {
     )}</span>º|
     <span class="nighttemp" id="lowFiveDayTemp"> ${Math.round(
       forecast.temp.min
-    )}</span>º
+    )}</span><span class="nightdegree">º</span>
     </p>`;
   }
 }

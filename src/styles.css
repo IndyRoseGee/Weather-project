@@ -125,7 +125,7 @@ p {
 }
 
 #two-temps {
-  margin-top: 20px;
+  margin-top: 30px;
   color: dimgrey;
   font-size: 23px;
   padding-left: 10px;
@@ -160,12 +160,13 @@ p {
 .small-t-emoji {
   font-size: 50px;
 }
-.daytemp {
-  font-size: 22px;
-}
 
 .nighttemp {
-  color: dimgrey;
+  color: #696969;
+}
+
+.nightdegree {
+  color: #696969;
 }
 .day {
   font-size: 18px;
