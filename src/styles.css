@@ -16,7 +16,6 @@
   margin-bottom: 30px;
   width: 780px;
   border-radius: 10px;
-  
 }
 .vids {
   position: fixed;
@@ -120,9 +119,9 @@ p {
   text-align: center;
 }
 #icon {
-  padding-top: 10px;
-  padding-left: 10px;
+  padding-top: -10px;
   line-height: 60px;
+  padding-left: 0;
 }
 
 #two-temps {

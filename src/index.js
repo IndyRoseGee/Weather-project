@@ -178,7 +178,6 @@ console.log(formatFiveDay());
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 function showWeather(response) {
   console.log(response);
   document.querySelector("h1").innerHTML = response.data.name;
@@ -207,7 +206,7 @@ function showWeather(response) {
   realHumidity.innerHTML = `${inspectHumidity}`;
 
   let icon = document.querySelector("#icon");
-  icon.innerHTML = `<img src="src/media/${response.data.weather[0].icon}.png" />`;
+  icon.innerHTML = `<img src="src/media/${response.data.weather[0].icon}.png" width="130"/>`;
 
   let background = document.querySelector("#video");
   background.innerHTML = `<video autoplay loop muted id="vids"><source src="src/media/${response.data.weather[0].icon}.mp4" type="video/mp4" /></video>`;
@@ -221,8 +220,7 @@ function search(event) {
 
 function searchCity(city) {
   let apiKey = "1f8b7e0173439d434022d96a0701f579";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
   axios.get(apiUrl).then(showWeather);
 }
@@ -232,8 +230,8 @@ function myLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let apiKey = "1f8b7e0173439d434022d96a0701f579";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
   axios.get(apiUrl).then(showWeather);
 }
@@ -249,6 +247,62 @@ button.addEventListener("click", getCurrentPosition);
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*function displayForecastDayOne(response) {
+  let dayOneBox = document.querySelector("#day-one-box");
+  let celsiusMax = Math.round(response.data[0].main.temp_max);
+  let celsiusMin = Math.round(response.data[0].main.temp_min);
+  let emoji = Math.round(response.data.weather[0].icon);
 
+  dayOneBox.innerHTML = `<p class="small-t-emoji"><img src="src/media/${emoji}.png"></p>
+  <p>
+    <span class="daytemp" id="highFiveDayTemp"> ${celsiusMax}º</span>
+    <span class="nighttemp" id="lowFiveDayTemp"> | ${celsiusMin}º</span>  </p>`;
+}
 
+*/
+
+function showForecast(response) {
+  console.log(response);
+
+  celsiusMax = response.data.main.temp_max;
+  let tempMax = document.querySelector("#highFiveDayTemp");
+  tempMax.innerHTML = Math.round(response.data.main.temp_max);
+
+  celsiusMin = response.data.main.temp_min;
+  let tempMin = document.querySelector("#lowFiveDayTemp");
+  tempMin.innerHTML = Math.round(response.data.main.temp_min);
+
+  let icon = document.querySelector(".small-t-emoji");
+  icon.innerHTML = `<img src="src/media/${response.data.weather[0].icon}.png" width="130"/>`;
+}
+
+function searchCityForecast(city) {
+  let apiKey = "1f8b7e0173439d434022d96a0701f579";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?exclude=current,hourly,minutely&q=${city}&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(showForecast);
+}
+
+/*
+
+function forecastDayOne(response) {
+  let tempMax = Math.round(response.data.daily.temp.min);
+  let tempMin = Math.round(response.data.daily.temp.min);
+  let emoji = `<img src="src/media/${response.daily.weather[0].icon}.png" />`;
+
+  document.querySelector(
+    "#day-one-box"
+  ).innerHTML = `<p class="small-t-emoji"><img src="src/media/${emoji}.png"></p>
+  <p>
+    <span class="daytemp" id="highFiveDayTemp"> ${tempMax}º</span>
+    <span class="nighttemp" id="lowFiveDayTemp"> | ${tempMin}º</span>  </p>`;
+}
+
+function showForecastDayOne(city) {
+  console.log(response);
+  let apiKey = "1f8b7e0173439d434022d96a0701f579";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?q=${city}&exclude=current,minutely,hourly&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(forecastDayOne);
+}*/
