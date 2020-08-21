@@ -89,6 +89,14 @@ p {
   vertical-align: top;
   top: 15px;
 }
+.active {
+  color: black;
+  cursor: default;
+}
+.active:hover {
+  text-decoration: none;
+  color: black;
+}
 
 .descriptive {
   display: inline-block;

@@ -357,6 +357,8 @@ form.addEventListener("submit", search);
 let celsiusTemperature = null;
 let celsiusMax = null;
 let celsiusMin = null;
+let lowFiveTemp = null;
+let highFiveTemp = null;
 
 function displayFahTemp(event) {
   event.preventDefault();
@@ -380,9 +382,9 @@ function displayFahTemp(event) {
   celsiusSymbolLow.innerHTML = " °F";
 
   let forecastFiveDaysHigh = document.querySelectorAll("#highFiveDayTemp");
-  forecastFiveDays.forEach(function (item) {
-    let currentTemp = days.innerHTML;
-    days.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  forecastFiveDaysHigh.forEach(function (item) {
+    let currentTemp = item.innerHTML;
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
   });
 
   let forecastFiveDaysLow = document.querySelectorAll("#lowFiveDayTemp");
@@ -391,104 +393,46 @@ function displayFahTemp(event) {
     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
   });
 
-  forecastMax = celsiusConverter.classList.remove("active");
-  fahrenheitConverter.classList.add("active");
+  forecastMax = celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahTemp);
 
-/*
-
-
-
-function showFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
-  let currentCelsius = document.querySelector("#temperature");
-  currentCelsius.innerHTML = fahrenheitTemperature;
-  let fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32);
-  let tempMax = document.querySelector("#max-temp");
-  tempMax.innerHTML = fahrenheitMax;
-  let maxSymbol = document.querySelector("#celsius-max");
-  maxSymbol.innerHTML = "°F";
-  let fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
-  let fahrMin = document.querySelector("#min-temp");
-  fahrMin.innerHTML = fahrenheitMin;
-  let minSymbol = document.querySelector("#celsius-min");
-  minSymbol.innerHTML = "°F";
-
-  let forecastItems = document.querySelectorAll(".forecast-temp-max");
-  forecastItems.forEach(function (item) {
-    let currentTemp = item.innerHTML;
-    // grabbing the current value to convert--
-    // convert to Fahrenheit
-    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
-  });
-
-  let forecastItemsMin = document.querySelectorAll(".forecast-temp-min");
-  forecastItemsMin.forEach(function (item) {
-    let currentTemp = item.innerHTML;
-    // grabbing the current value to convert---
-    // convert to Fahrenheit
-    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
-  });
-
-  let forecastCelsiusSymbol = document.querySelectorAll(".forecast-degree");
-  forecastCelsiusSymbol.forEach(function (item) {
-    item.innerHTML = `°F`;
-  });
-
-  forecastMax = celsiusConverter.classList.remove("active");
-  fahrenheitConverter.classList.add("active");
-}
-
 function showCelsius(event) {
   event.preventDefault();
-  let currentCelsius = document.querySelector("#temperature");
-  currentCelsius.innerHTML = Math.round(celsiusTemperature);
-  let tempMax = document.querySelector("#max-temp");
-  tempMax.innerHTML = Math.round(celsiusMax);
-  let maxSymbol = document.querySelector("#celsius-max");
-  maxSymbol.innerHTML = "°C";
-  let tempMin = document.querySelector("#min-temp");
-  tempMin.innerHTML = Math.round(celsiusMin);
-  let minSymbol = document.querySelector("#celsius-min");
-  minSymbol.innerHTML = "°C";
 
-  let forecastItems = document.querySelectorAll(".forecast-temp-max");
+  let currentCelsius = document.querySelector("#main-temperature");
+  currentCelsius.innerHTML = Math.round(celsiusTemperature);
+
+  let tempMax = document.querySelector("#high-temp");
+  tempMax.innerHTML = Math.round(celsiusMax);
+
+  let maxSymbol = document.querySelector("#celsius-symbol");
+  maxSymbol.innerHTML = " °C";
+
+  let tempMin = document.querySelector("#low-temp");
+  tempMin.innerHTML = Math.round(celsiusMin);
+
+  let minSymbol = document.querySelector("#celsius-symbol-low");
+  minSymbol.innerHTML = " °C";
+
+  let forecastItems = document.querySelectorAll("#highFiveDayTemp");
   forecastItems.forEach(function (item) {
     let currentTemp = item.innerHTML;
-    // grabbing the current value to convert---
-    // convert to Celsius
     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
   });
 
-  let forecastItemsMin = document.querySelectorAll(".forecast-temp-min");
+  let forecastItemsMin = document.querySelectorAll("#lowFiveDayTemp");
   forecastItemsMin.forEach(function (item) {
     let currentTemp = item.innerHTML;
-    // grabbing the current value to convert--
-    // convert to Fahrenheit
     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
   });
 
-  let forecastFahrenheitSymbol = document.querySelectorAll(".forecast-degree");
-  forecastFahrenheitSymbol.forEach(function (item) {
-    item.innerHTML = `°C`;
-  });
-
-  fahrenheitConverter.classList.remove("active");
-  celsiusConverter.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
 }
 
-let fahrenheitConverter = document.querySelector("#fahrenheit");
-fahrenheitConverter.addEventListener("click", showFahrenheit);
-
-let celsiusConverter = document.querySelector("#celsius");
-celsiusConverter.addEventListener("click", showCelsius);
-
-let button = document.querySelector("#location");
-button.addEventListener("click", showLocation);
-
-let citySearch = document.querySelector("#search-form");
-citySearch.addEventListener("submit", handleSubmit); */
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsius);
